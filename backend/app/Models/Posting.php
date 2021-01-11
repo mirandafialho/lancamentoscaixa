@@ -10,6 +10,13 @@ class Posting extends Model
     use HasFactory;
 
     /**
+     * Not using timestamps.
+     * 
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

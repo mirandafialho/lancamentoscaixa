@@ -14,11 +14,13 @@ class CreatePostingsTable extends Migration
     public function up()
     {
         Schema::create('postings', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->unsigned();
             $table->decimal('value');
             $table->string('description');
             $table->dateTime('posting_date');
-            $table->timestamps();
+            $table->dateTime('valid_from');
+            $table->dateTime('valid_to');
+            $table->dropPrimary('postings_pkey');
         });
     }
 

@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import Posting from "./Posting";
 
 class PostingList extends Component {
+    onDelete = (id) => {
+        this.props.onDelete(id);
+    }
+
+    onEdit = (data) => {
+        this.props.onEdit(data);
+    }
+
     render() {
         const postings = this.props.postings;
 
@@ -20,7 +28,7 @@ class PostingList extends Component {
                     <tbody>
                         {
                             postings.map((posting) => {
-                                return <Posting posting={ posting } key={ posting.id } />;
+                                return <Posting posting={ posting } key={ posting.id } onDelete={ this.onDelete } onEdit={ this.onEdit } />;
                             })
                         }
                     </tbody>

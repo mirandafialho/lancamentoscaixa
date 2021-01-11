@@ -79,7 +79,7 @@ class PostingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $posting = Posting::findOrFail($id);
+        $posting = Posting::where('id', $id)->whereRaw('valid_to = \'infinity\'')->firstOrFail();
 
         $posting->value = $request->value;
         $posting->description = $request->description;
@@ -93,12 +93,12 @@ class PostingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Posting  $posting
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Posting $posting)
+    public function destroy($id)
     {
-        $posting = Posting::findOrFail($id);
+        $posting = Posting::where('id', $id)->whereRaw('valid_to = \'infinity\'')->firstOrFail();
         $posting->delete();
         return response()->json($posting);
     }
