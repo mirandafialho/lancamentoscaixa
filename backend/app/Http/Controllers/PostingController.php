@@ -14,7 +14,7 @@ class PostingController extends Controller
      */
     public function index()
     {
-        $postings = Posting::orderBy('posting_date', 'desc')->get();
+        $postings = Posting::whereRaw('valid_to = \'infinity\'')->orderBy('posting_date', 'desc')->get();
         return response()->json($postings);
     }
 
